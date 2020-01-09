@@ -27,23 +27,23 @@ const tasks = [{
 (function (arrOfTasks) {
   /**
    * Трансформируем массив объектов в объект объектов
+   * Trnasform array of object in object of objects
    */
-  const objectOfTasks = arrOfTasks.reduce((acc, task) => {
+  const objOfTasks = arrOfTasks.reduce((acc, task) => {
     acc[task._id] = task;
     return acc;
   }, {})
-  // console.log(objectOfTasks);
 
   // Element UI
-  const listContainer = document.createElement('.task-list-section .list-group',
+  const listContainer = document.querySelector('.tasks-list-section .list-group',
   );
 
 
-  renderAllTasks(objectOfTasks);
+  renderAllTasks(objOfTasks);
 
 
   /**
-   * Выводим задачи на страницу
+   * display tasks on page
    */
   function renderAllTasks(tasksList) {
     if (!tasksList) {
@@ -53,16 +53,14 @@ const tasks = [{
 
     const fragment = document.createDocumentFragment();
     Object.values(tasksList).forEach(task => {
-      // console.log(task);
       const li = listItemTemplate(task);
       fragment.appendChild(li);
     });
     listContainer.appendChild(fragment);
   }
 
-  function listItemTemplate({_id, title, body} = {}) {
-    // console.log(_id, title);
-    const li = document.querySelector('li');
+  function listItemTemplate({ _id, title, body } = {}) {
+    const li = document.createElement('li');
     li.classList.add(
       'list-group-item',
       'd-flex',
@@ -86,7 +84,6 @@ const tasks = [{
     li.appendChild(span);
     li.appendChild(deleteBtn);
     li.appendChild(article);
-    // console.log(li);
     return li;
   }
 })(tasks);
