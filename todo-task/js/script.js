@@ -41,9 +41,10 @@ const tasks = [{
   const form = document.forms['addTask'];
   const inputTitle = form.elements['title'];
   const inputBody = form.elements['body'];
-  console.log(inputTitle, inputBody);
+  // console.log(inputTitle, inputBody);
 
 
+  // Events
   renderAllTasks(objOfTasks);
   form.addEventListener('Submit', onFormSubmitHandler)
 
@@ -95,5 +96,13 @@ const tasks = [{
 
   function onFormSubmitHandler (e) {
     e.preventDefault();
+    const titleValue = inputTitle.value;
+    const bodyValue = inputBody.value;
+    console.log(titleValue, bodyValue);
+
+    if (!titleValue || !bodyValue) {
+      alert("Пожалуйста введите title и body");
+      return;
+    }
   }
 })(tasks);
