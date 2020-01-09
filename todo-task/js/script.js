@@ -38,8 +38,14 @@ const tasks = [{
   const listContainer = document.querySelector('.tasks-list-section .list-group',
   );
 
+  const form = document.forms['addTask'];
+  const inputTitle = form.elements['title'];
+  const inputBody = form.elements['body'];
+  console.log(inputTitle, inputBody);
+
 
   renderAllTasks(objOfTasks);
+  form.addEventListener('Submit', onFormSubmitHandler)
 
 
   /**
@@ -85,5 +91,9 @@ const tasks = [{
     li.appendChild(deleteBtn);
     li.appendChild(article);
     return li;
+  }
+
+  function onFormSubmitHandler (e) {
+    e.preventDefault();
   }
 })(tasks);
