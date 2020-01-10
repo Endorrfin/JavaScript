@@ -94,15 +94,33 @@ const tasks = [{
     return li;
   }
 
-  function onFormSubmitHandler (e) {
+  function onFormSubmitHandler(e) {
     e.preventDefault();
     const titleValue = inputTitle.value;
     const bodyValue = inputBody.value;
-    console.log(titleValue, bodyValue);
+    // console.log(titleValue, bodyValue);
 
     if (!titleValue || !bodyValue) {
       alert("Пожалуйста введите title и body");
       return;
     }
+
+    const task = createNewTask(titleValue, bodyValue);
+    console.log(objOfTasks);
+  }
+
+  function createNewTask(title, body) {
+    const newTask = {
+      title,
+      body,
+      completed: false,
+      _id: `task-${Math.random()}`,
+    };
+    console.log(newTask);
+
+    objOfTasks[newTask._id] = newTask;
+
+    return { ...newTask };
   }
 })(tasks);
+
