@@ -27,10 +27,12 @@ const tasks = [
 ];
 
 (function (arrOfTasks) {
+
   /**
    * Трансформируем массив объектов в объект объектов
    * Trnasform array of object in object of objects
    */
+
   const objOfTasks = arrOfTasks.reduce((acc, task) => {
     acc[task._id] = task;
     return acc;
@@ -43,12 +45,12 @@ const tasks = [
   const form = document.forms['addTask'];
   const inputTitle = form.elements['title'];
   const inputBody = form.elements['body'];
-  // console.log(inputTitle, inputBody);
 
 
   // Events
   renderAllTasks(objOfTasks);
-  form.addEventListener('submit', onFormSubmitHandler)
+  form.addEventListener('submit', onFormSubmitHandler);
+  listContainer.addEventListener('click', onDeletehandler);
 
 
   /**
@@ -77,6 +79,8 @@ const tasks = [
       'flex-wrap',
       'mt-2'
     );
+    li.setAttribute('data-task-id', _id);
+
     const span = document.createElement('span');
     span.textContent = title;
     span.style.fontWeight = "bold";
@@ -124,6 +128,27 @@ const tasks = [
     objOfTasks[newTask._id] = newTask;
 
     return { ...newTask };
+  }
+
+  function deleteTask(id) {
+    const { title } = objOfTasks[id];
+    const isConfirm = confirm(`Вы действительно хотите удалить задачу: ${title}`);
+    // console.log(isConfirm);
+    if(!isConfirm) return isConfirm;
+    delete objOfTasks[id];
+    return isConfirm;
+  }
+
+  function onDeletehandler({ target }) {
+    if (target.classList.contains('delete-btn')) {
+      // console.log('Delete');
+      const parent = target.closest('[data-task-id]');
+      // console.log(parent);
+      const id = parent.dataset.taskId;
+      // console.log(id);
+      const confirmed = deleteTask(id);
+      console.log(confirmed);
+    }
   }
 })(tasks);
 
