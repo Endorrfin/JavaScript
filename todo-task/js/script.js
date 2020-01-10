@@ -136,13 +136,10 @@ const tasks = [
     },
   };
 
-  let lastSelectedTheme = 'default';
+  let lastSelectedTheme = localStorage.getItem('app_theme') || 'default';
 
   // Element UI
-  const listContainer = document.querySelector(
-    '.tasks-list-section .list-group',
-  );
-
+  const listContainer = document.querySelector('.tasks-list-section .list-group',);
   const form = document.forms['addTask'];
   const inputTitle = form.elements['title'];
   const inputBody = form.elements['body'];
@@ -156,7 +153,8 @@ const tasks = [
   form.addEventListener('submit', onFormSubmitHandler);
   listContainer.addEventListener('click', onDeletehandler);
   // listContainer.addEventListener('click', );
-  themeSelect.addEventListener('change', onThemeSelectHandler)
+  themeSelect.addEventListener('change', onThemeSelectHandler);
+  setTheme(lastSelectedTheme);
 
 
   /**
@@ -267,6 +265,7 @@ const tasks = [
     }
     setTheme(selectedTheme);
     lastSelectedTheme = selectedTheme;
+    localStorage.setItem('app_theme', selectedTheme);
   }
 
   function setTheme(name) {
