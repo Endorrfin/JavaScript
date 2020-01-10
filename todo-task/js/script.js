@@ -54,7 +54,7 @@ const tasks = [
     'do something very important № 0007',
     title: 
     'Task-#7',
-  },
+  }
 ];
 
 (function (arrOfTasks) {
@@ -70,18 +70,23 @@ const tasks = [
   }, {});
 
   // Element UI
-  const listContainer = document.querySelector('.tasks-list-section .list-group',
+  const listContainer = document.querySelector(
+    '.tasks-list-section .list-group',
   );
 
-  const form = document.forms['addTask'];
-  const inputTitle = form.elements['title'];
-  const inputBody = form.elements['body'];
+  const form = document
+  // const form = document.forms['addTask'];
+  // const inputTitle = form.elements['title'];
+  // const inputBody = form.elements['body'];
+
+
 
 
   // Events
   renderAllTasks(objOfTasks);
   form.addEventListener('submit', onFormSubmitHandler);
   listContainer.addEventListener('click', onDeletehandler);
+  // listContainer.addEventListener('click', );
 
 
   /**
@@ -124,10 +129,10 @@ const tasks = [
     article.textContent = body;
     article.classList.add('mt-2', 'w-100');
 
-
     li.appendChild(span);
     li.appendChild(deleteBtn);
     li.appendChild(article);
+    
     return li;
   }
 
