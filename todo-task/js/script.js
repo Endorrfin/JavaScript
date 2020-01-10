@@ -136,6 +136,8 @@ const tasks = [
     },
   };
 
+  let lastSelectedTheme = 'default';
+
   // Element UI
   const listContainer = document.querySelector(
     '.tasks-list-section .list-group',
@@ -259,13 +261,21 @@ const tasks = [
   function onThemeSelectHandler(e) {
     const selectedTheme = themeSelect.value;
     const isConfirm = confirm(`Вы действительно хотите изменить тему ${selectedTheme}`);
-    if(!isConfirm) return;
+    if(!isConfirm) {
+      themeSelect.value = lastSelectedTheme;
+      return;
+    }
     setTheme(selectedTheme);
+    lastSelectedTheme = selectedTheme;
   }
 
   function setTheme(name) {
     // console.log(name);
-    
+    const selectedThemeObj = themes[name];
+    Object.entries(selectedThemeObj).forEach(([key, value]) => {
+      // console.log(key, value);
+      document.documentElement.style.setProperty(key, value);
+    });
   }
 })(tasks);
 

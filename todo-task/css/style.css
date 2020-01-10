@@ -1,4 +1,4 @@
-/* :root {
+:root {
   --base-text-color: #212529;
   --header-bg: #007bff;
   --header-text-color: #fff;
@@ -70,4 +70,4 @@ body {
   background-color: var(--input-focus-bg-color);
   border-color: var(--input-focus-border-color);
   box-shadow: var(--input-focus-box-shadow);
-} */
+}
