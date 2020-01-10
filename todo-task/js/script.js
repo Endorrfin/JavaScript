@@ -2,27 +2,58 @@ const tasks = [
   {
     _id: '5d2ca9e2e03d40b326596aa7',
     completed: true,
-    body: 'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-    title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    body: 
+    'do something very important № 0001',
+    title: 
+    'Task-#1',
   },
   {
     _id: '5d2ca9e29c8a94095c1288e0',
     completed: false,
-    body: 'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-    title: 'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    body: 
+    'do something very important № 0002',
+    title: 
+    'Task-#2',
   },
   {
     _id: '5d2ca9e2e03d40b3232496aa7',
     completed: true,
-    body: 'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-    title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    body: 
+    'do something very important № 0003',
+    title: 
+    'Task-#3',
   },
   {
     _id: '5d2ca9e29c8a94095564788e0',
     completed: false,
-    body: 'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+    body: 
+    'do something very important № 0004',
     title: 
-    'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+    'Task-#4',
+  },
+  {
+    _id: '5d2ca9e29c8b94995564788e0',
+    completed: false,
+    body: 
+    'do something is not important № 0005',
+    title: 
+    'Task-#5',
+  },
+  {
+    _id: '5d2ca9e29c8b94995567788e0',
+    completed: true,
+    body: 
+    'do something not important № 0006',
+    title: 
+    'Task-#6',
+  },
+  {
+    _id: '5c2ca9e29c8b94935564788e0',
+    completed: false,
+    body: 
+    'do something very important № 0007',
+    title: 
+    'Task-#7',
   },
 ];
 
@@ -133,21 +164,22 @@ const tasks = [
   function deleteTask(id) {
     const { title } = objOfTasks[id];
     const isConfirm = confirm(`Вы действительно хотите удалить задачу: ${title}`);
-    // console.log(isConfirm);
     if(!isConfirm) return isConfirm;
     delete objOfTasks[id];
     return isConfirm;
   }
 
+  function deleteTaskFromHtml (confirmed, el) {
+    if (!confirmed) return;
+    el.remove();
+  }
+
   function onDeletehandler({ target }) {
     if (target.classList.contains('delete-btn')) {
-      // console.log('Delete');
       const parent = target.closest('[data-task-id]');
-      // console.log(parent);
       const id = parent.dataset.taskId;
-      // console.log(id);
       const confirmed = deleteTask(id);
-      console.log(confirmed);
+      deleteTaskFromHtml(confirmed, parent);
     }
   }
 })(tasks);
