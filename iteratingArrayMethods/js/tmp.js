@@ -45,7 +45,7 @@ const users = [
   {
     _id: "5cdce6cebada7a418d8ccb3d",
     index: 3,
-    isActive: true,
+    isActive: false,
     balance: 2621.84,
     age: 25,
     name: "Austin Benton",
@@ -102,15 +102,23 @@ const users = [
  * Метод ничего не возврдащает.
  * Это более коротки способ перебрать массив, чем если перебирать его класическим for
  */
-users.forEach((user, i, arr) => {
-  console.log(user, i, arr);
-})
+// users.forEach((user, i, arr) => {
+//   console.log(user, i, arr);
+// })
 
 
 // === <<<--- filter --->>>  ===
 /**
- * 
+ * Получить список пользователей, чей возраст < 30 лет
+ * Если результат вызова callback будет true, то элемент попадет в выборку.
  */
-users.filter((user, i, arr) => {
-  console.log(user, i, arr);
-})
+// const userLess30 = users.filter(user => user.age < 30);
+//   console.log(userLess30);
+
+
+/**
+ * Выбрать только активных пользователей
+ */
+// const activeUser = users.filter(user => user.isActive === true);
+const activeUser = users.filter(user => user.isActive);
+console.log(activeUser);
