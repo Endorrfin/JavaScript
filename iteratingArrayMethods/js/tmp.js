@@ -80,8 +80,37 @@ const users = [
     email: "valenciacarrillo@xerex.com",
     phone: "+1 (977) 522-3378",
     registered: "2014-02-14T11:45:27 -02:00"
+  },
+  {
+    _id: "5cdbe6ce133de120d32d6fe4",
+    index: 26,
+    isActive: true,
+    balance: 1899.99,
+    age: 29,
+    name: "Ray Woodly",
+    gender: "male",
+    company: "HP",
+    email: "raywoodly@hp.com",
+    phone: "+1 (852) 456-3171",
+    registered: "2019-04-86B491:24:49 -03:00"
   }
 ];
 
 
 // === <<<--- forEach  --->>>  ===
+/**
+ * Метод ничего не возврдащает.
+ * Это более коротки способ перебрать массив, чем если перебирать его класическим for
+ */
+users.forEach((user, i, arr) => {
+  console.log(user, i, arr);
+})
+
+
+// === <<<--- filter --->>>  ===
+/**
+ * 
+ */
+users.filter((user, i, arr) => {
+  console.log(user, i, arr);
+})
