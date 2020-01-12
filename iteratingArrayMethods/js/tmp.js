@@ -120,5 +120,29 @@ const users = [
  * Выбрать только активных пользователей
  */
 // const activeUser = users.filter(user => user.isActive === true);
-const activeUser = users.filter(user => user.isActive);
-console.log(activeUser);
+// const activeUser = users.filter(user => user.isActive);
+// console.log(activeUser);
+
+
+
+
+// === <<<--- map --->>>  ===
+/**
+ * map позволяет получить новый массив.
+ * Получить список имен.
+ */
+// const userName = users.map(user => user.name);
+//   console.log(userName);
+
+/**
+ * Получить лишь список компаний
+ */
+// const userCompany = users.map(user => user.company);
+//   console.log(userCompany);
+
+
+  /**
+ * получить список имен и возрастов
+ */
+const userNameAge = users.map(user => ({name: user.name, age: user.age}));
+console.log(userNameAge);
