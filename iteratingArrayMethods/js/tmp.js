@@ -144,5 +144,25 @@ const users = [
   /**
  * получить список имен и возрастов
  */
-const userNameAge = users.map(user => ({name: user.name, age: user.age}));
-console.log(userNameAge);
+// const userNameAge = users.map(user => ({name: user.name, age: user.age}));
+// console.log(userNameAge);
+
+
+
+
+// === <<<--- map --->>>  ===
+/**
+ * reduce - позволяет развернуть массив, превратить массив в какую-то другую сущность.
+ * Позволяет что-то посчитать. Например посчитать баланс всех юзеров.
+ */
+
+// Option I
+// const totalBalance = users.reduce((acc, user) => {
+//   console.log(acc, user);
+//   return acc += user.balance;
+// },0);
+
+
+// Option II
+// const totalBalance = users.reduce((acc, user) => (acc += user.balance), 0);
+// console.log(totalBalance);
