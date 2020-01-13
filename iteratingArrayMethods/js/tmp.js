@@ -202,5 +202,36 @@ const users = [
 // const isCompanyGenom = users.find((user) => user.company === 'GENMOM' );
 //   console.log(isCompanyGenom); // true
 
-const userActive = users.find((user) => user.isActive === true);
-  console.log(userActive);
+// const userActive = users.find((user) => user.isActive === true);
+//   console.log(userActive);
+
+
+
+
+// === <<<--- sort --->>>  ===
+/**
+ * sort - сортирует массив, изменяя исходный массив.
+ * sort - сортирует по лексическому значению, как строки.
+ */
+
+ // Option I сортировка массива строк
+//  const strArr = ['Denis', 'Viktor', 'Leonid', 'Pavel', 'Aristarh', 'Yakov'];
+
+//  strArr.sort();
+//  console.log(strArr); // ["Aristarh", "Denis", "Leonid", "Pavel", "Viktor", "Yakov"]
+
+
+ // Option II сортировка массива чисел
+ const numberArr = [4, 8, 9, 34, 42, 2, 7, 11, 5];
+
+//  numberArr.sort();
+//  console.log(numberArr); // [11, 2, 34, 4, 42, 5, 7, 8, 9]
+
+numberArr.sort((prev, next) => prev - next);
+// console.log(numberArr); // [2, 4, 5, 7, 8, 9, 11, 34, 42]
+
+
+ // Option III сортировка массива users по возрасту свойста age
+ 
+ users.sort((prevUser, nextUser) => prevUser.age - nextUser.age);
+//  console.log(users);
