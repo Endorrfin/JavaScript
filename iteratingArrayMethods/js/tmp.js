@@ -166,3 +166,29 @@ const users = [
 // Option II
 // const totalBalance = users.reduce((acc, user) => (acc += user.balance), 0);
 // console.log(totalBalance);
+
+
+// Option II
+/**
+ * формирование из массива объекта объектов
+ */
+// const userObj = users.reduce((acc, user) => {
+//   acc[user._id] = user;
+//   return acc
+// }, {});
+// console.log(userObj);
+
+
+// === <<<--- some & every --->>>  ===
+/**
+ * some - возвращает true, если хотя бы для 1 элемента массива callback вернет true
+ * ever - возвращает true, если для всех элементов массива callback вернет true
+ */
+const isMale = users.some((user) => user.gender === 'male ' );
+  console.log(isMale); // true
+
+const isFemale = users.every((user) => user.gender === 'female');
+  console.log(isFemale); // false
+
+const everyUserMore20 = users.every((user) => user.age >= 20);
+  console.log(everyUserMore20); // true
