@@ -184,11 +184,23 @@ const users = [
  * some - возвращает true, если хотя бы для 1 элемента массива callback вернет true
  * ever - возвращает true, если для всех элементов массива callback вернет true
  */
-const isMale = users.some((user) => user.gender === 'male ' );
-  console.log(isMale); // true
+// const isMale = users.some((user) => user.gender === 'male' );
+//   console.log(isMale); // true
 
-const isFemale = users.every((user) => user.gender === 'female');
-  console.log(isFemale); // false
+// const isFemale = users.every((user) => user.gender === 'female');
+//   console.log(isFemale); // false
 
-const everyUserMore20 = users.every((user) => user.age >= 20);
-  console.log(everyUserMore20); // true
+// const everyUserMore20 = users.every((user) => user.age >= 20);
+//   console.log(everyUserMore20); // true
+
+
+
+// === <<<--- find --->>>  ===
+/**
+ * find - позволяет найти заданый элемент в массиве. Возвращает 1-й нашедший.
+ */
+// const isCompanyGenom = users.find((user) => user.company === 'GENMOM' );
+//   console.log(isCompanyGenom); // true
+
+const userActive = users.find((user) => user.isActive === true);
+  console.log(userActive);
