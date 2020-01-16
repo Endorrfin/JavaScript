@@ -124,8 +124,33 @@ btnAddPost.addEventListener('click', e => {
    xhr.addEventListener("error", () => {
      console.log('error')
    });
-   
+
    xhr.send();
  }
 
 
+
+  // ============= ОБРАБОТКА ОШИБОК =============
+  function myHttpRequest({method, url} = {}, cb) {
+    try {
+      const xhr = new XMLHttpRequest(); 
+     xhr.open(method, url);
+     xhr.addEventListener("load", () => {
+       if (Math.floor(xhr.status / 100) !==2) {
+         cb('Error, Status code: ${xhr.status}', xhr);
+       }
+       const response = JSON.parse(xhr.responseText)
+       cb(null, response);
+     });
+    
+     xhr.addEventListener("error", () => {
+       console.log("error");
+     });
+    
+     xhr.send();
+    } catch (error) {
+      cb(error);
+    }
+  }
+
+ 
