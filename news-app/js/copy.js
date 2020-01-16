@@ -56,23 +56,24 @@ function customHttp() {
 // Init http module
 const http = customHttp();
 
-const newsService = (function(){
-  const apiKey = '70028f59fb0548059af095518452b93e';
+const newsService = (function() {
+  const apiKey = '9c27b0f722b84da5a08312d2b125351b';
   const apiUrl = 'https://newsapi.org/v2';
 
   return {
     topHeadlines(country = 'ua', cb) {
       http.get(
-        `${apiUrl}/top-headlines?country=${country}&category=technology&apiKey=${apiKey}`, 
+        `${apiUrl}/top-headlines?country=${country}&category=technology&apiKey=${apiKey}`,
         cb,
-        );
+      );
     },
-    everything (query, cb) {
+    everything(query, cb) {
       http.get(`${apiUrl}/everything?q=${query}&apiKey=${apiKey}`, cb);
     },
   };
 })();
 
+// Elements
 const form = document.forms['newsControls'];
 const countrySelect = form.elements['country'];
 const searchInput = form.elements['search'];
@@ -88,53 +89,41 @@ document.addEventListener('DOMContentLoaded', function() {
   loadNews();
 });
 
-
-// ======= LOAD NEWS FUNCTION =======
+// Load news function
 function loadNews() {
   showLoader();
+
   const country = countrySelect.value;
-  const searchText = searchInput.value
-  
-  if(!searchText) {
+  const searchText = searchInput.value;
+
+  if (!searchText) {
     newsService.topHeadlines(country, onGetResponse);
   } else {
-    newsService.everything (searchText, onGetResponse)
+    newsService.everything(searchText, onGetResponse);
   }
 }
 
-
-// ======= ON GET RESPONSE FROM SERVER FUNCTION =======
+// Function on get response from server
 function onGetResponse(err, res) {
   removePreloader();
 
-  if(err) {
+  if (err) {
     showAlert(err, 'error-msg');
     return;
   }
 
-  if(!res.articles.length) {
+  if (!res.articles.length) {
     // show empty message
     return;
   }
+
   renderNews(res.articles);
 }
 
-
-// ======= CLEAR CONTAINER FUNCTION =======
-function clearContainer(container) {
-  // container.inerHTML = '';
-  let child = container.lastElementChild;
-  while (child) {
-    container.removeChild(child);
-    child = container.lastElementChild;
-  }
-}
-
-
-// ======= RENDER NEWS FUNCTION =======
+// Function render news
 function renderNews(news) {
   const newsContainer = document.querySelector('.news-container .row');
-  if(newsContainer.children.length) {
+  if (newsContainer.children.length) {
     clearContainer(newsContainer);
   }
   let fragment = '';
@@ -147,15 +136,24 @@ function renderNews(news) {
   newsContainer.insertAdjacentHTML('afterbegin', fragment);
 }
 
+// Function clear container
+function clearContainer(container) {
+  // container.innerHTML = '';
+  let child = container.lastElementChild;
+  while (child) {
+    container.removeChild(child);
+    child = container.lastElementChild;
+  }
+}
 
-// ======= NEWS ITEM TEMPLATE FUNCTION =======
+// News item template function
 function newsTemplate({ urlToImage, title, url, description }) {
   return `
     <div class="col s12">
       <div class="card">
         <div class="card-image">
           <img src="${urlToImage}">
-          <span class ="card-title">${title || ''}</span>
+          <span class="card-title">${title || ''}</span>
         </div>
         <div class="card-content">
           <p>${description || ''}</p>
@@ -168,32 +166,26 @@ function newsTemplate({ urlToImage, title, url, description }) {
   `;
 }
 
-
-// ======= SHOW ALERT FUNCTION =======
 function showAlert(msg, type = 'success') {
-  M.toast( {html: msg, classes: type })
+  M.toast({ html: msg, classes: type });
 }
 
-
-
-// ======= SHOW PRELOADER FUNCTION =======
-function showLoader () {
+//  Show loader function
+function showLoader() {
   document.body.insertAdjacentHTML(
-    'afterbegin', 
+    'afterbegin',
     `
     <div class="progress">
       <div class="indeterminate"></div>
     </div>
-    `,
+  `,
   );
 }
 
-
-// ======= REMOVE SHOW PRELOADER FUNCTION =======
+// Remove loader function
 function removePreloader() {
   const loader = document.querySelector('.progress');
-  if(loader) {
+  if (loader) {
     loader.remove();
   }
 }
-
