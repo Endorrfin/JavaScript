@@ -7,6 +7,10 @@
  * XMLHttpRequest позволяет создать экземпляр запроса, и потом с помощью этого экземпляра вызывать специальные методы для того, чтобы совершить запрос.
  * 
  * XMLHttpRequest возвращает нам на выходе объект, который и позволяет на создавать, отправлять, обрабатывать запросы.
+ * 
+ * ---------
+ * 
+ * Cross-Origin Resource Sharing (CORS) - он позволяет описать политику, или правила, как один сайт будет предоставлять доступ к данным другого сайта. 
  */
 
 const btnGetPosts = document.querySelector('.btn-get-posts');
@@ -106,5 +110,22 @@ btnAddPost.addEventListener('click', e => {
   });
 });
 
+
+
+ // ============= CORS =============
+ function getGmail(cb) {
+
+  const xhr = new XMLHttpRequest();
+   xhr.open("GET", "http://gmail.com");
+   xhr.addEventListener("load", () => {
+     console.log(xhr.responseText);
+   });
+
+   xhr.addEventListener("error", () => {
+     console.log('error')
+   });
+   
+   xhr.send();
+ }
 
 
