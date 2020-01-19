@@ -53,19 +53,30 @@ console.log(user.seyHello()); // Hello Bill Gates
 function Customer (firstName, lastName, membership) {
   // User.call(this, firstName, lastName) // привязываем контекст с помощью метода apply
   User.apply(this, arguments); // если параметров много, можем применить apply и передать arguments
+
+  // сохраняем membership
+  this.membership = membership;
 }
 
-const customer = new Customer ('Elon', 'Musk', 'basic');
 
+const customer = new Customer ('Elon', 'Musk', 'basic');
 console.log(customer); // Customer {firstName: "Elon", lastName: "Musk"}
 console.log(customer.sayHello); // UNDEFINED
 
 
 // прототипное наследование: забираем прототип user в прототип customer
 Customer.prototype = Object.create(User.prototype);
+Customer.prototype.constructor = Customer;
+Customer.prototype.getMemberShip = function () {
+  return this.membership.toUpperCase();
+}
 
 console.log(customer); // Customer {firstName: "Elon", lastName: "Musk"}
 console.log(customer.getFulName); // undefined
 console.log(customer.sayHello); // undefined
+
+// console.log(customer.getMemberShip());
+
+
 
 
