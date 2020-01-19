@@ -1,58 +1,46 @@
 
 // 'use strict';
 
-
-// +++++++ ES-6 +++++++
-class ProductES {
-  constructor(brand, price, discount) {
-    this._brand = brand;
-    this.price = price;
-    this.discount = discount;
+// +++++++ JS inheritance in ES-6) +++++++
+class UserES {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
-  get brand() {
-    return this._brand;
+  getFulName () {
+    return `${this.firstName} ${this.lastName}`;
   }
-
-  set brand(name) {
-    this._brand = name;
-  }
-
-  getPriceWithDiscount() {
-    return (this.price * (100 - this.discount)) / 100;
-  }
-
-  setPrice (newPrice) {
-    this.price = newPrice
-  }
-  
-
-  /**
-   * Классы ES-6 дают возможность создавать статические методы. 
-   * Статические методы - это те методы, которые могут вызываться отдельно от инстранциации класса, отдельно от экземпляра, без его создания, они не имеют доступа к this.
-   * static метод невозможно вызывать в экземпляре.
-   */
-
-   static plus(x, y) {
-     return x + y;
-   }
 }
 
 
-const newProduct = new ProductES('Bosch', 200, 10);
-console.log(newProduct);
-console.log(newProduct.getPriceWithDiscount()) //180
+class CustomerES extends UserES {
+  constructor(firstName, lastName, membership) {
+    // для того, чтобы унаследовать свойства и методы родительского класса, в конструкторе нужно вызвать super и передать соответствующие аргументы
+    super(firstName, lastName);
+    this.membership = membership;
+  }
 
-console.log(ProductES.plus(3,4)); // 7
+  // getFullName() {
+  //   console.log('new get full name method');
+  //   console.log(super.getFulName()); //  Philip Morris
+  // }
 
-/**
- * class Date - который дает возможность работать с датой
- * Это специальная функция-конструктор, которая дает возможность работать с датой.
- * В нем есть множество методов для получения года, месяца, для установки даты и т.д.
- * в class Date есть статический метода - называется null - он возвращает time stamp - момент времени.
- * Это число в милисекундах - сколько прошло времени от 1970 года 1-го января 00 часов 00 минут 00 секунд до сегодняшнего дня.
- * time stamp - позволяет решить погрешность обусловленную часовыми поясами.
- */
+  getFullName () {
+    const parentRes = super.getFulName();
+    return `${parentRes}, membership ${this.membership}`
+  }
+}
+
+const customerEs = new CustomerES('Philip', 'Morris', 'basic');
+console.log(customerEs); // CustomerES {firstName: "Philip", lastName: "Morris", membership: "basic"}
+console.log(customerEs.getFulName()); // Philip Morris
+console.log(customerEs.getFulName()); // new get full name method
+
+
+console.log(customerEs.getFullName()) // Philip Morris, membership basic
+
+
 
 
 
