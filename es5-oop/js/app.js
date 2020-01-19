@@ -64,7 +64,7 @@
 
 
 
-// ======= создаем функцию-конструктор с параметрами и методами =======
+// ======= создаем функцию-конструктор с параметрами, свойствами и методом =======
 function Product(brand, price, discount) {
   // 1. создается новый объект
   // 2. на этот объект устанавливается ссылка this 
@@ -75,7 +75,7 @@ function Product(brand, price, discount) {
   this.price = price;
   this.discount = discount;
 
-  // методы
+  // метод
   this.getPriceWithDiscount = function() {
     return (this.price * (100 - this.discount)) / 100;
   }
@@ -83,15 +83,15 @@ function Product(brand, price, discount) {
 
 
 const apple = new Product('Apple', 100, 15);
-console.log(apple); // Product {brand: "Apple"}
+console.log(apple); // Product {brand: "Apple", price: 100, discount: 15, getPriceWithDiscount: ƒ}
 const samsung = new Product('Samsung', 200, 25);
-console.log(samsung); // Product {brand: "Samsung"}
+console.log(samsung); // Product {brand: "Samsung", price: 200, discount: 25, getPriceWithDiscount: ƒ}
 const lg = new Product('LG', 80, 10)
-console.log(lg); // Product {brand: "LG"}
+console.log(lg); // Product {brand: "LG", price: 80, discount: 10, getPriceWithDiscount: ƒ}
 
-apple.getPriceWithDiscount()
-samsung.getPriceWithDiscount()
-lg.getPriceWithDiscount()
+console.log(apple.getPriceWithDiscount()); // 85
+console.log(samsung.getPriceWithDiscount()); // 150
+console.log(lg.getPriceWithDiscount()); // 72
 
 /**
  * Таким образом создаются свойства и методы для функций-конструкторов.
