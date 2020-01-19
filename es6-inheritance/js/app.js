@@ -80,22 +80,3 @@ console.log(customer.sayHello); // undefined
 
 
 
-
-
-
-
-// +++++++ JS inheritance in ES-6) +++++++
-class UserES {
-  constructor(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-
-  getFulName () {
-    return `${this.firstName} ${this.lastName}`;
-  }
-}
-
-
-
-

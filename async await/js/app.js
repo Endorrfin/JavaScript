@@ -24,18 +24,18 @@
 
 
  // ======= code II =======
-async function f() {
+// async function f() {
 
-  let promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("готово!"), 1000)
-  });
+//   let promise = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("готово!"), 1000)
+//   });
 
-  let result = await promise; // будет ждать, пока промис не выполнится (*)
+//   let result = await promise; // будет ждать, пока промис не выполнится (*)
 
-  console.log(result); // "готово!"
-}
+//   console.log(result); // "готово!"
+// }
 
-f();
+// f();
 
 
 // ======= async await - option I =======
