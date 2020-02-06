@@ -1,0 +1,16 @@
+
+
+
+/* EXAMPLE */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  /* height: 100%; */
+  /* background: #40b7d7; */
+  font: bold 24px helvetica, sans-serif;
+  color: rgb(90, 90, 90);
+}
+
