@@ -35,3 +35,17 @@
 }
 
 console.log(isParent(spanParent, span));
+
+
+const p = document.querySelector('p');
+// console.dir(p);
+
+// Перобразовываем к массиву выполнив деструктуризацию при помощи оператора rest
+const [...childNodes] = p.childNodes
+console.log(childNodes);
+
+childNodes.forEach(node => {
+  if (node.nodeType === 3) {
+    node.textContent = '-text-' 
+  }
+})
