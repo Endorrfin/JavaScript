@@ -103,11 +103,14 @@ const tableSchema = {
      item.index = index + 1;
      const itemSchema = generateItemsSchema(tableSchema, item);
      const tr = generateTr(itemSchema, 'td');
+     tbody.appendChild(tr);
     //  console.log(tr);
-   });
+  });
+
+  return tbody;
  }
 
-
+// Собираем схему для каждого юзера по которой он должен создаваться.
  function generateItemsSchema(tableSchema, item) {
    const itemSchema = Object.keys(tableSchema).reduce((acc, key) => {
      if (key in item) {
@@ -117,8 +120,7 @@ const tableSchema = {
      return acc;
    }, {});
 
-  //  return itemSchema;
-  //  console.log(itemSchema);
+   return itemSchema;
    console.log(itemSchema);
  }
 
@@ -131,15 +133,39 @@ const tableSchema = {
  }
 
 
+ function generateTotalBalance(tableSchema, items) {
+   const total = items.reduce((acc, item) => acc + parseFloat(item.balance), 0);
+   const tr = document.createElement('tr');
+   const td = document.createElement('td');
+   const columnCounts = Object.keys(tableSchema).length;
+   // добавляем шаблон td
+   td.insertAdjacentHTML('beforeend', `Total balance: <b>${total}</b>`);
+   // добавляем 2 атрибута на td
+   // 1-й атрибут colspan - позволяет растянуть td на количество колонок, которое нужно
+   td.setAttribute('colspan', columnCounts);
+   // 2-й атрибут align - позволяет выровнять содержимое ячейки
+   td.setAttribute('align', 'right');
+
+   // добавляем tr в td
+   tr.appendChild(td);
+
+   return tr;
+ }
+
+
  function initTable(tableSchema, items) {
    const container = document.querySelector('.table-container');
    const table = generateTableTemplate();
    console.log(table)
    const header = generateThead(tableSchema);
-   const body = generateTableTemplate(tableSchema, items);
+   const body = generateTbody(tableSchema, items);
+   const total = generateTotalBalance(tableSchema, items);
 
 
    table.appendChild(header);
+   table.appendChild(body);
+   table.appendChild(total);
+
    container.appendChild(table);
  }
 
